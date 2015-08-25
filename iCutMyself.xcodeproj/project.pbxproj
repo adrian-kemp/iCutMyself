@@ -7,9 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		75C975D81B7E59C500EF1E5B /* CommunicationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75C975D71B7E59C500EF1E5B /* CommunicationViewController.m */; };
+		75C975DB1B7E5C5100EF1E5B /* DataPreparationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75C975DA1B7E5C5100EF1E5B /* DataPreparationViewController.m */; };
+		75D0BE0C1B75316F0096CAEC /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75D0BE0B1B75316F0096CAEC /* IOKit.framework */; };
+		75D0BE0F1B7541570096CAEC /* DeviceConnectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75D0BE0E1B7541570096CAEC /* DeviceConnectionViewController.m */; };
+		75D0BE121B7556CA0096CAEC /* DeviceConnectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 75D0BE111B7556CA0096CAEC /* DeviceConnectionView.m */; };
+		75D0BE151B75595F0096CAEC /* SerialCommunication.c in Sources */ = {isa = PBXBuildFile; fileRef = 75D0BE131B75595F0096CAEC /* SerialCommunication.c */; };
 		75FE223E1B74D4A9009CEC97 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 75FE223D1B74D4A9009CEC97 /* AppDelegate.m */; };
 		75FE22401B74D4A9009CEC97 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 75FE223F1B74D4A9009CEC97 /* main.m */; };
-		75FE22431B74D4A9009CEC97 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75FE22421B74D4A9009CEC97 /* ViewController.m */; };
 		75FE22451B74D4A9009CEC97 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 75FE22441B74D4A9009CEC97 /* Images.xcassets */; };
 		75FE22481B74D4A9009CEC97 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 75FE22461B74D4A9009CEC97 /* Main.storyboard */; };
 		75FE22541B74D4A9009CEC97 /* iCutMyselfTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 75FE22531B74D4A9009CEC97 /* iCutMyselfTests.m */; };
@@ -26,13 +31,22 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		75C975D61B7E59C500EF1E5B /* CommunicationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommunicationViewController.h; sourceTree = "<group>"; };
+		75C975D71B7E59C500EF1E5B /* CommunicationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommunicationViewController.m; sourceTree = "<group>"; };
+		75C975D91B7E5C5100EF1E5B /* DataPreparationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataPreparationViewController.h; sourceTree = "<group>"; };
+		75C975DA1B7E5C5100EF1E5B /* DataPreparationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataPreparationViewController.m; sourceTree = "<group>"; };
+		75D0BE0B1B75316F0096CAEC /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
+		75D0BE0D1B7541570096CAEC /* DeviceConnectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceConnectionViewController.h; sourceTree = "<group>"; };
+		75D0BE0E1B7541570096CAEC /* DeviceConnectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceConnectionViewController.m; sourceTree = "<group>"; };
+		75D0BE101B7556CA0096CAEC /* DeviceConnectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceConnectionView.h; sourceTree = "<group>"; };
+		75D0BE111B7556CA0096CAEC /* DeviceConnectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceConnectionView.m; sourceTree = "<group>"; };
+		75D0BE131B75595F0096CAEC /* SerialCommunication.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = SerialCommunication.c; sourceTree = "<group>"; };
+		75D0BE141B75595F0096CAEC /* SerialCommunication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SerialCommunication.h; sourceTree = "<group>"; };
 		75FE22371B74D4A9009CEC97 /* iCutMyself.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iCutMyself.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		75FE223B1B74D4A9009CEC97 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		75FE223C1B74D4A9009CEC97 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		75FE223D1B74D4A9009CEC97 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		75FE223F1B74D4A9009CEC97 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		75FE22411B74D4A9009CEC97 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		75FE22421B74D4A9009CEC97 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		75FE22441B74D4A9009CEC97 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		75FE22471B74D4A9009CEC97 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		75FE224D1B74D4A9009CEC97 /* iCutMyselfTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iCutMyselfTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -45,6 +59,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				75D0BE0C1B75316F0096CAEC /* IOKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -61,6 +76,7 @@
 		75FE222E1B74D4A9009CEC97 = {
 			isa = PBXGroup;
 			children = (
+				75D0BE0B1B75316F0096CAEC /* IOKit.framework */,
 				75FE22391B74D4A9009CEC97 /* iCutMyself */,
 				75FE22501B74D4A9009CEC97 /* iCutMyselfTests */,
 				75FE22381B74D4A9009CEC97 /* Products */,
@@ -81,11 +97,19 @@
 			children = (
 				75FE223C1B74D4A9009CEC97 /* AppDelegate.h */,
 				75FE223D1B74D4A9009CEC97 /* AppDelegate.m */,
-				75FE22411B74D4A9009CEC97 /* ViewController.h */,
-				75FE22421B74D4A9009CEC97 /* ViewController.m */,
 				75FE22441B74D4A9009CEC97 /* Images.xcassets */,
 				75FE22461B74D4A9009CEC97 /* Main.storyboard */,
 				75FE223A1B74D4A9009CEC97 /* Supporting Files */,
+				75D0BE0D1B7541570096CAEC /* DeviceConnectionViewController.h */,
+				75D0BE0E1B7541570096CAEC /* DeviceConnectionViewController.m */,
+				75D0BE101B7556CA0096CAEC /* DeviceConnectionView.h */,
+				75D0BE111B7556CA0096CAEC /* DeviceConnectionView.m */,
+				75D0BE131B75595F0096CAEC /* SerialCommunication.c */,
+				75D0BE141B75595F0096CAEC /* SerialCommunication.h */,
+				75C975D61B7E59C500EF1E5B /* CommunicationViewController.h */,
+				75C975D71B7E59C500EF1E5B /* CommunicationViewController.m */,
+				75C975D91B7E5C5100EF1E5B /* DataPreparationViewController.h */,
+				75C975DA1B7E5C5100EF1E5B /* DataPreparationViewController.m */,
 			);
 			path = iCutMyself;
 			sourceTree = "<group>";
@@ -215,8 +239,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				75FE22431B74D4A9009CEC97 /* ViewController.m in Sources */,
+				75D0BE0F1B7541570096CAEC /* DeviceConnectionViewController.m in Sources */,
+				75D0BE151B75595F0096CAEC /* SerialCommunication.c in Sources */,
 				75FE22401B74D4A9009CEC97 /* main.m in Sources */,
+				75D0BE121B7556CA0096CAEC /* DeviceConnectionView.m in Sources */,
+				75C975DB1B7E5C5100EF1E5B /* DataPreparationViewController.m in Sources */,
+				75C975D81B7E59C500EF1E5B /* CommunicationViewController.m in Sources */,
 				75FE223E1B74D4A9009CEC97 /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -407,6 +435,7 @@
 				75FE22591B74D4A9009CEC97 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		75FE225A1B74D4A9009CEC97 /* Build configuration list for PBXNativeTarget "iCutMyselfTests" */ = {
 			isa = XCConfigurationList;
@@ -415,6 +444,7 @@
 				75FE225C1B74D4A9009CEC97 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
