@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7546DE511B8C98A1002EDDCC /* ToolSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7546DE501B8C98A1002EDDCC /* ToolSettingsViewController.m */; };
+		7546DE541B8C9C58002EDDCC /* ToolSettingsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7546DE531B8C9C58002EDDCC /* ToolSettingsView.m */; };
 		75C975D81B7E59C500EF1E5B /* CommunicationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75C975D71B7E59C500EF1E5B /* CommunicationViewController.m */; };
 		75C975DB1B7E5C5100EF1E5B /* DataPreparationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75C975DA1B7E5C5100EF1E5B /* DataPreparationViewController.m */; };
 		75D0BE0C1B75316F0096CAEC /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75D0BE0B1B75316F0096CAEC /* IOKit.framework */; };
@@ -31,6 +33,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7546DE4F1B8C98A1002EDDCC /* ToolSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToolSettingsViewController.h; sourceTree = "<group>"; };
+		7546DE501B8C98A1002EDDCC /* ToolSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToolSettingsViewController.m; sourceTree = "<group>"; };
+		7546DE521B8C9C58002EDDCC /* ToolSettingsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToolSettingsView.h; sourceTree = "<group>"; };
+		7546DE531B8C9C58002EDDCC /* ToolSettingsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToolSettingsView.m; sourceTree = "<group>"; };
 		75C975D61B7E59C500EF1E5B /* CommunicationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommunicationViewController.h; sourceTree = "<group>"; };
 		75C975D71B7E59C500EF1E5B /* CommunicationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommunicationViewController.m; sourceTree = "<group>"; };
 		75C975D91B7E5C5100EF1E5B /* DataPreparationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataPreparationViewController.h; sourceTree = "<group>"; };
@@ -110,6 +116,10 @@
 				75C975D71B7E59C500EF1E5B /* CommunicationViewController.m */,
 				75C975D91B7E5C5100EF1E5B /* DataPreparationViewController.h */,
 				75C975DA1B7E5C5100EF1E5B /* DataPreparationViewController.m */,
+				7546DE4F1B8C98A1002EDDCC /* ToolSettingsViewController.h */,
+				7546DE501B8C98A1002EDDCC /* ToolSettingsViewController.m */,
+				7546DE521B8C9C58002EDDCC /* ToolSettingsView.h */,
+				7546DE531B8C9C58002EDDCC /* ToolSettingsView.m */,
 			);
 			path = iCutMyself;
 			sourceTree = "<group>";
@@ -244,6 +254,8 @@
 				75FE22401B74D4A9009CEC97 /* main.m in Sources */,
 				75D0BE121B7556CA0096CAEC /* DeviceConnectionView.m in Sources */,
 				75C975DB1B7E5C5100EF1E5B /* DataPreparationViewController.m in Sources */,
+				7546DE541B8C9C58002EDDCC /* ToolSettingsView.m in Sources */,
+				7546DE511B8C98A1002EDDCC /* ToolSettingsViewController.m in Sources */,
 				75C975D81B7E59C500EF1E5B /* CommunicationViewController.m in Sources */,
 				75FE223E1B74D4A9009CEC97 /* AppDelegate.m in Sources */,
 			);

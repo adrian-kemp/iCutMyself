@@ -106,10 +106,6 @@ int OpenSerialConnectionToDeviceAtPath(const char *deviceFilePath)
     int             fileDescriptor = -1;
     int             handshake;
     
-    // Open the serial port read/write, with no controlling terminal, and don't wait for a connection.
-    // The O_NONBLOCK flag also causes subsequent I/O on the device to be non-blocking.
-    // See open(2) <x-man-page://2/open> for details.
-    
     fileDescriptor = open(deviceFilePath, O_RDWR | O_NOCTTY | O_NONBLOCK);
     if (fileDescriptor == -1) {
         printf("Error opening serial port %s - %s(%d).\n",
@@ -135,7 +131,7 @@ int OpenSerialConnectionToDeviceAtPath(const char *deviceFilePath)
         goto error;
     }
     
-    speed_t speed = 250000; // Set 14400 baud
+    speed_t speed = 250000;
     if (ioctl(fileDescriptor, IOSSIOSPEED, &speed) == -1) {
         printf("Error calling ioctl(..., IOSSIOSPEED, ...) %s - %s(%d).\n",
                deviceFilePath, strerror(errno), errno);

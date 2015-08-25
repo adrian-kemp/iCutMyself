@@ -711,8 +711,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="156" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <popUpButton verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OaI-B6-pLg">
-                                <rect key="frame" x="10" y="256" width="119" height="26"/>
+                            <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="OaI-B6-pLg">
+                                <rect key="frame" x="10" y="256" width="137" height="26"/>
                                 <popUpButtonCell key="cell" type="push" title="Select Device" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="4v9-Oh-aNK" id="Mju-B9-zDo">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="menu"/>
@@ -732,6 +732,9 @@
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
                                     <font key="font" metaFont="systemBold" size="12"/>
                                 </buttonCell>
+                                <connections>
+                                    <segue destination="wXe-kD-FJa" kind="popover" identifier="popoverToolSettingsViewController" popoverAnchorView="Agz-Iy-bOV" popoverBehavior="t" preferredEdge="minY" id="3gb-ux-KBm"/>
+                                </connections>
                             </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="mFB-c7-7Oa">
                                 <rect key="frame" x="26" y="38" width="105" height="14"/>
@@ -771,7 +774,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZCw-E0-HfB">
-                                <rect key="frame" x="0.0" y="36" width="340" height="266"/>
+                                <rect key="frame" x="0.0" y="36" width="340" height="166"/>
                                 <clipView key="contentView" id="S4c-Mw-HFE">
                                     <rect key="frame" x="1" y="1" width="223" height="133"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -780,10 +783,10 @@
                                             <rect key="frame" x="0.0" y="0.0" width="223" height="298"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <size key="minSize" width="338" height="264"/>
+                                            <size key="minSize" width="338" height="164"/>
                                             <size key="maxSize" width="463" height="10000000"/>
                                             <color key="insertionPointColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                            <size key="minSize" width="338" height="264"/>
+                                            <size key="minSize" width="338" height="164"/>
                                             <size key="maxSize" width="463" height="10000000"/>
                                         </textView>
                                     </subviews>
@@ -812,23 +815,121 @@
                                     <action selector="sendData:" target="Q2f-GP-Ehm" id="6oz-dS-L3o"/>
                                 </connections>
                             </button>
+                            <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LI3-NT-TjO">
+                                <rect key="frame" x="0.0" y="202" width="340" height="100"/>
+                                <clipView key="contentView" id="RDr-tj-m0o">
+                                    <rect key="frame" x="1" y="1" width="223" height="133"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <textView editable="NO" importsGraphics="NO" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" usesFontPanel="YES" verticallyResizable="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" spellingCorrection="YES" smartInsertDelete="YES" id="Pjy-4w-fZq">
+                                            <rect key="frame" x="0.0" y="0.0" width="223" height="133"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <color key="textColor" name="headerColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <size key="minSize" width="338" height="98"/>
+                                            <size key="maxSize" width="463" height="10000000"/>
+                                            <color key="insertionPointColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                            <size key="minSize" width="338" height="98"/>
+                                            <size key="maxSize" width="463" height="10000000"/>
+                                        </textView>
+                                    </subviews>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </clipView>
+                                <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="Ll6-7t-Mlt">
+                                    <rect key="frame" x="-100" y="-100" width="87" height="18"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                                <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="f1u-A3-pc3">
+                                    <rect key="frame" x="224" y="1" width="15" height="133"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                            </scrollView>
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="tqf-Qx-5EK" secondAttribute="bottom" constant="10" id="A9m-aG-8U7"/>
                             <constraint firstItem="tqf-Qx-5EK" firstAttribute="top" secondItem="ZCw-E0-HfB" secondAttribute="bottom" constant="10" id="AVj-ko-my9"/>
+                            <constraint firstAttribute="trailing" secondItem="LI3-NT-TjO" secondAttribute="trailing" id="Icb-V4-3jr"/>
                             <constraint firstItem="tqf-Qx-5EK" firstAttribute="leading" secondItem="QNT-bg-Cny" secondAttribute="leading" constant="10" id="Lcw-XS-n6z"/>
+                            <constraint firstItem="LI3-NT-TjO" firstAttribute="top" secondItem="QNT-bg-Cny" secondAttribute="top" id="PS7-Yo-O08"/>
                             <constraint firstItem="ZCw-E0-HfB" firstAttribute="leading" secondItem="QNT-bg-Cny" secondAttribute="leading" id="Vie-2G-LRE"/>
+                            <constraint firstItem="LI3-NT-TjO" firstAttribute="leading" secondItem="QNT-bg-Cny" secondAttribute="leading" id="VuP-PN-3LP"/>
                             <constraint firstAttribute="trailing" secondItem="ZCw-E0-HfB" secondAttribute="trailing" id="aRW-PX-eXr"/>
-                            <constraint firstItem="ZCw-E0-HfB" firstAttribute="top" secondItem="QNT-bg-Cny" secondAttribute="top" id="qL2-Fu-AHj"/>
+                            <constraint firstItem="ZCw-E0-HfB" firstAttribute="top" secondItem="LI3-NT-TjO" secondAttribute="bottom" id="eAS-mW-8Mg"/>
+                            <constraint firstItem="ZCw-E0-HfB" firstAttribute="top" secondItem="QNT-bg-Cny" secondAttribute="top" constant="100" id="qL2-Fu-AHj"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="historyView" destination="Pjy-4w-fZq" id="mAg-IV-2qM"/>
                         <outlet property="textView" destination="N2p-iy-lBy" id="Bsi-XK-QmJ"/>
                     </connections>
                 </viewController>
                 <customObject id="M6v-l2-6dM" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="362" y="809"/>
+        </scene>
+        <!--Tool Settings View Controller-->
+        <scene sceneID="FNs-vk-eun">
+            <objects>
+                <viewController id="wXe-kD-FJa" customClass="ToolSettingsViewController" sceneMemberID="viewController">
+                    <view key="view" id="H2z-0c-fbB" customClass="ToolSettingsView">
+                        <rect key="frame" x="0.0" y="0.0" width="145" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="C1W-Md-77L">
+                                <rect key="frame" x="10" y="218" width="126" height="26"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="uxd-aQ-S2o"/>
+                                </constraints>
+                                <popUpButtonCell key="cell" type="push" title="Feed Rate" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="rG7-Aj-VZo" id="oRg-te-0Ma">
+                                    <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="menu"/>
+                                    <menu key="menu" title="Baurdrate" id="AO9-Jl-PIR">
+                                        <items>
+                                            <menuItem title="Feed Rate" state="on" id="rG7-Aj-VZo"/>
+                                        </items>
+                                    </menu>
+                                </popUpButtonCell>
+                            </popUpButton>
+                            <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="XFi-bO-agO">
+                                <rect key="frame" x="10" y="256" width="126" height="26"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="Rks-d5-MqA"/>
+                                </constraints>
+                                <popUpButtonCell key="cell" type="push" title="Baurdrate" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="aqC-vW-jLe" id="tdI-4O-ali">
+                                    <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="menu"/>
+                                    <menu key="menu" title="Baurdrate" id="fkL-r0-b8T">
+                                        <items>
+                                            <menuItem title="Baurdrate" state="on" id="aqC-vW-jLe"/>
+                                            <menuItem title="9600" id="3Ri-wJ-iSN"/>
+                                            <menuItem title="56000" id="r8w-Bj-cAq"/>
+                                            <menuItem title="115600" id="xm9-AB-IIg"/>
+                                            <menuItem title="250000" id="JwG-b7-hNr"/>
+                                        </items>
+                                    </menu>
+                                </popUpButtonCell>
+                                <connections>
+                                    <action selector="baudRateDidChange:" target="wXe-kD-FJa" id="WeS-zy-xgu"/>
+                                </connections>
+                            </popUpButton>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="XFi-bO-agO" firstAttribute="top" secondItem="H2z-0c-fbB" secondAttribute="top" constant="20" id="H6E-Wc-gQz"/>
+                            <constraint firstItem="XFi-bO-agO" firstAttribute="leading" secondItem="C1W-Md-77L" secondAttribute="leading" id="W2s-l1-mlI"/>
+                            <constraint firstItem="XFi-bO-agO" firstAttribute="width" secondItem="C1W-Md-77L" secondAttribute="width" id="bkm-1q-gTk"/>
+                            <constraint firstItem="XFi-bO-agO" firstAttribute="leading" secondItem="H2z-0c-fbB" secondAttribute="leading" constant="12" id="pNx-05-vvw"/>
+                            <constraint firstAttribute="trailing" secondItem="XFi-bO-agO" secondAttribute="trailing" constant="12" id="rKY-Bk-ppg"/>
+                            <constraint firstItem="C1W-Md-77L" firstAttribute="top" secondItem="XFi-bO-agO" secondAttribute="bottom" constant="17" id="vue-Ev-Z5e"/>
+                        </constraints>
+                        <connections>
+                            <outlet property="baudRateSelectionButton" destination="XFi-bO-agO" id="I2R-pf-S62"/>
+                            <outlet property="feedRateSelectionButton" destination="C1W-Md-77L" id="zr2-zs-4db"/>
+                        </connections>
+                    </view>
+                </viewController>
+                <customObject id="VMm-fQ-Qz2" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="835.5" y="810"/>
         </scene>
     </scenes>
 </document>

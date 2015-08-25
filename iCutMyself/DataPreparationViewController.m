@@ -11,6 +11,7 @@
 @interface DataPreparationViewController ()
 
 @property (unsafe_unretained) IBOutlet NSTextView *textView;
+@property (unsafe_unretained) IBOutlet NSTextView *historyView;
 
 @end
 
@@ -23,6 +24,10 @@
 
 - (IBAction)sendData:(id)sender {
     [self.delegate dataPreparationViewController:self wantsToSendString:self.textView.string];
+    NSMutableString *historyString = [self.historyView.string mutableCopy];
+    [historyString appendString:self.textView.string];
+    self.historyView.string = [historyString copy];
+    [self.historyView scrollToEndOfDocument:nil];
     self.textView.string = @"";
 }
 

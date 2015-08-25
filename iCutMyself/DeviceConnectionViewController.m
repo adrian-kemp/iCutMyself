@@ -10,8 +10,9 @@
 
 #import "SerialCommunication.h"
 #import "DeviceConnectionViewController.h"
+#import "ToolSettingsViewController.h"
 
-@interface DeviceConnectionViewController () <DeviceConnectionViewDelegate>
+@interface DeviceConnectionViewController () <DeviceConnectionViewDelegate, ToolSettingsViewControllerDelegate>
 
 @property (nonatomic, strong) NSArray *devicePaths;
 @property (nonatomic, assign) int fileDescriptor;
@@ -48,6 +49,12 @@
     
     
     self.view.devicePaths = self.devicePaths;
+}
+
+- (void)prepareForSegue:(NSStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"popoverToolSettingsViewController"]) {
+        ((ToolSettingsViewController *)segue.destinationController).delegate = self;
+    }
 }
 
 - (void)DeviceConnectionView:(DeviceConnectionView *)view didSelectDeviceAtIndex:(NSUInteger)index {
@@ -100,6 +107,16 @@
             }
         }
     }
+}
+
+#pragma mark - ToolSettingsViewControllerDelegate
+
+- (void)feedRateDidChange:(NSNumber *)feedRate {
+    
+}
+
+- (void)baudRateDidChange:(NSNumber *)baudRate {
+    NSLog(@"baud rate changed to: %@", baudRate);
 }
 
 @end
