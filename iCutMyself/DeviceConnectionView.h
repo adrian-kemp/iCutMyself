@@ -23,5 +23,6 @@
 @property (nonatomic, assign) NSUInteger sentCommandCount;
 @property (nonatomic, assign) NSUInteger receivedCommandCount;
 @property (nonatomic, assign) NSUInteger bufferedCommandCount;
+@property (nonatomic, assign) float estimatedCompletionTime;
 
 @end

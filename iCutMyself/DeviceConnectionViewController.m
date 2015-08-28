@@ -11,6 +11,7 @@
 #import "SerialCommunication.h"
 #import "DeviceConnectionViewController.h"
 #import "ToolSettingsViewController.h"
+#import "GCodeCommand.h"
 
 @interface DeviceConnectionViewController () <DeviceConnectionViewDelegate, ToolSettingsViewControllerDelegate>
 
@@ -19,8 +20,8 @@
 @property (nonatomic, assign) uint8_t *readBuffer;
 @property (nonatomic, strong) NSTimer *readTimer;
 @property (nonatomic, strong) NSMutableArray *commandBuffer;
+@property (nonatomic, strong) NSMutableArray *commandsPendingConfirmation;
 @property (nonatomic, strong) NSTimer *writeTimer;
-@property (nonatomic, assign) NSUInteger commandsPendingConfirmation;
 
 @end
 
@@ -36,11 +37,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.view.estimatedCompletionTime = 0;
     self.view.delegate = self;
     self.fileDescriptor = 0;
     self.readBuffer = malloc(sizeof(uint8_t) * BUFFER_SIZE);
     self.readTimer = [NSTimer scheduledTimerWithTimeInterval:0.1f target:self selector:@selector(readFromDevice) userInfo:nil repeats:YES];
     self.commandBuffer = [NSMutableArray new];
+    self.commandsPendingConfirmation = [NSMutableArray new];
     self.writeTimer = [NSTimer scheduledTimerWithTimeInterval:0.1f target:self selector:@selector(writeToDevice) userInfo:nil repeats:YES];
 }
 
@@ -67,26 +70,35 @@
 
 - (void)writeString:(NSString *)string {
     //break the string by new line
-    NSArray *commands = [string componentsSeparatedByString:@"\n"];
-    
-    //add commands to buffer
-    [self.commandBuffer addObjectsFromArray:commands];
-    
-    self.view.bufferedCommandCount = self.commandBuffer.count;
+    __block NSString *stringToParse = [string copy];
+    __weak typeof(self) weakSelf = self;
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        NSArray *commandStrings = [stringToParse componentsSeparatedByString:@"\n"];
+        GCodeCommand *lastCommand = weakSelf.commandBuffer.lastObject;
+        for (NSString *commandString in commandStrings) {
+            GCodeCommand *command = [[GCodeCommand alloc] initWithString:commandString];
+            [weakSelf.commandBuffer addObject:command];
+            float timeForCommand = [command millisecondsToTransitFromCommand:lastCommand].floatValue;
+            weakSelf.view.estimatedCompletionTime += timeForCommand;
+            weakSelf.view.bufferedCommandCount = weakSelf.commandBuffer.count;
+            lastCommand = command;
+        }
+    });
 }
 
 - (void)writeToDevice {
-    if (self.fileDescriptor == 0 || self.commandsPendingConfirmation >= 10 || self.commandBuffer.count == 0) {
+    if (self.fileDescriptor == 0 || self.commandsPendingConfirmation.count >= 10 || self.commandBuffer.count == 0) {
         return;
     }
     
-    NSString *commandToSend = [NSString stringWithFormat:@"%@\n", self.commandBuffer.firstObject];
-    self.commandsPendingConfirmation++;
-    if (!WriteDataToSerialModem([commandToSend cStringUsingEncoding:NSASCIIStringEncoding], commandToSend.length, self.fileDescriptor)) {
+    GCodeCommand *commandToSend = self.commandBuffer.firstObject;
+    NSString *stringToSend = [NSString stringWithFormat:@"%@\n", commandToSend.commandString];
+    if (!WriteDataToSerialModem([stringToSend cStringUsingEncoding:NSASCIIStringEncoding], stringToSend.length, self.fileDescriptor)) {
         NSLog(@"ERROR: Unsuccessful write!");
-        self.commandsPendingConfirmation--;
     } else {
+        [self.commandsPendingConfirmation addObject:commandToSend];
         [self.commandBuffer removeObjectAtIndex:0];
+        self.view.estimatedCompletionTime -= [commandToSend millisecondsToTransitFromCommand:self.commandBuffer.firstObject].floatValue;
         self.view.bufferedCommandCount = self.commandBuffer.count;
         self.view.sentCommandCount++;
     }
@@ -100,10 +112,11 @@
         NSString *readData = [NSString stringWithCString:self.readBuffer encoding:NSASCIIStringEncoding];
         NSArray *responses = [readData componentsSeparatedByString:@"\n"];
         for (NSString *response in responses) {
-            NSLog(@"[response]: %@", response);
             if ([response isEqualToString:@"ok"]) {
-                self.commandsPendingConfirmation--;
+                [self.commandsPendingConfirmation removeObjectAtIndex:0];
                 self.view.receivedCommandCount++;
+            } else {
+                NSLog(@"WARN: Response was not 'OK'");
             }
         }
     }

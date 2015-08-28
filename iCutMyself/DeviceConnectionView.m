@@ -12,6 +12,8 @@
 
 @property (nonatomic, weak) IBOutlet NSPopUpButton *deviceSelectionButton;
 @property (weak) IBOutlet NSTextField *commandStatusTextField;
+@property (weak) IBOutlet NSTextField *estimatedCompletionTimeTextField;
+@property (weak) IBOutlet NSProgressIndicator *processingProgressIndicator;
 
 @end
 
@@ -44,6 +46,12 @@
 
 - (void)updateCommandStatus {
     self.commandStatusTextField.stringValue = [NSString stringWithFormat:@"TX/RX [%lu/%lu] Buffered [%lu]", self.sentCommandCount, self.receivedCommandCount, self.bufferedCommandCount];
+    self.processingProgressIndicator.doubleValue = ((float)self.receivedCommandCount)  /(((float)self.bufferedCommandCount) + ((float)self.sentCommandCount));
+}
+
+- (void)setEstimatedCompletionTime:(float)estimatedCompletionTime {
+    _estimatedCompletionTime = estimatedCompletionTime;
+    self.estimatedCompletionTimeTextField.stringValue = [NSString stringWithFormat:@"ECT: %.2fs", estimatedCompletionTime/1000];
 }
 
 @end

@@ -26,6 +26,7 @@
     [self.delegate dataPreparationViewController:self wantsToSendString:self.textView.string];
     NSMutableString *historyString = [self.historyView.string mutableCopy];
     [historyString appendString:self.textView.string];
+    [historyString appendString:@"\n"];
     self.historyView.string = [historyString copy];
     [self.historyView scrollToEndOfDocument:nil];
     self.textView.string = @"";

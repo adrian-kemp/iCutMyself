@@ -737,9 +737,20 @@
                                 </connections>
                             </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="mFB-c7-7Oa">
-                                <rect key="frame" x="26" y="38" width="105" height="14"/>
-                                <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="TX/RX [] Buffered []" id="HdG-Az-0Vv">
+                                <rect key="frame" x="-2" y="38" width="160" height="14"/>
+                                <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="TX/RX [] Buffered []" id="HdG-Az-0Vv">
                                     <font key="font" metaFont="smallSystem"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <progressIndicator maxValue="1" style="bar" translatesAutoresizingMaskIntoConstraints="NO" id="60M-yg-q9P">
+                                <rect key="frame" x="0.0" y="47" width="156" height="20"/>
+                            </progressIndicator>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Xsu-aj-Kra">
+                                <rect key="frame" x="-2" y="62" width="160" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="ECT:0.00s" id="0Qz-nH-V55">
+                                    <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
@@ -747,17 +758,26 @@
                         </subviews>
                         <constraints>
                             <constraint firstItem="OaI-B6-pLg" firstAttribute="top" secondItem="FwC-XT-Vyk" secondAttribute="top" constant="20" id="6gl-ga-aFU"/>
-                            <constraint firstAttribute="centerX" secondItem="mFB-c7-7Oa" secondAttribute="centerX" id="8ys-Zx-kAq"/>
+                            <constraint firstAttribute="trailing" secondItem="mFB-c7-7Oa" secondAttribute="trailing" id="Dql-yu-Hpv"/>
+                            <constraint firstItem="60M-yg-q9P" firstAttribute="width" secondItem="Xsu-aj-Kra" secondAttribute="width" id="KaD-mT-Tw2"/>
+                            <constraint firstItem="mFB-c7-7Oa" firstAttribute="leading" secondItem="FwC-XT-Vyk" secondAttribute="leading" id="Kuq-dj-xEP"/>
                             <constraint firstAttribute="bottom" secondItem="Agz-Iy-bOV" secondAttribute="bottom" constant="10" id="Pwa-u5-owP"/>
+                            <constraint firstItem="60M-yg-q9P" firstAttribute="centerY" secondItem="Xsu-aj-Kra" secondAttribute="centerY" constant="14" id="Ryz-fc-vLj"/>
                             <constraint firstItem="Agz-Iy-bOV" firstAttribute="leading" secondItem="FwC-XT-Vyk" secondAttribute="leading" constant="10" id="Ui0-eu-tEf"/>
+                            <constraint firstItem="Xsu-aj-Kra" firstAttribute="leading" secondItem="FwC-XT-Vyk" secondAttribute="leading" id="acU-uY-Mbm"/>
                             <constraint firstItem="OaI-B6-pLg" firstAttribute="leading" secondItem="FwC-XT-Vyk" secondAttribute="leading" constant="12" id="f8b-Hx-m5h"/>
+                            <constraint firstItem="mFB-c7-7Oa" firstAttribute="top" secondItem="Xsu-aj-Kra" secondAttribute="bottom" constant="10" id="mEF-YR-P2L"/>
                             <constraint firstAttribute="trailing" secondItem="OaI-B6-pLg" secondAttribute="trailing" constant="12" id="rrY-Kx-YhJ"/>
                             <constraint firstItem="Agz-Iy-bOV" firstAttribute="top" secondItem="mFB-c7-7Oa" secondAttribute="bottom" constant="10" id="sx1-20-prC"/>
+                            <constraint firstAttribute="trailing" secondItem="Xsu-aj-Kra" secondAttribute="trailing" id="uJ0-8i-JC8"/>
+                            <constraint firstItem="60M-yg-q9P" firstAttribute="centerX" secondItem="Xsu-aj-Kra" secondAttribute="centerX" id="vWM-Zt-Ctd"/>
                             <constraint firstAttribute="trailing" secondItem="Agz-Iy-bOV" secondAttribute="trailing" constant="10" id="zgL-uH-xLl"/>
                         </constraints>
                         <connections>
                             <outlet property="commandStatusTextField" destination="mFB-c7-7Oa" id="zDq-sW-pK3"/>
                             <outlet property="deviceSelectionButton" destination="OaI-B6-pLg" id="MWL-hb-JKo"/>
+                            <outlet property="estimatedCompletionTimeTextField" destination="Xsu-aj-Kra" id="CEe-WO-axS"/>
+                            <outlet property="processingProgressIndicator" destination="60M-yg-q9P" id="QEM-o6-7dq"/>
                         </connections>
                     </view>
                 </viewController>
