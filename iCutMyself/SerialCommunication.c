@@ -101,7 +101,7 @@ Boolean WriteDataToSerialModem(uint8_t *data, ssize_t dataLength, int fileDescri
 
 static struct termios gOriginalTTYAttrs;
 
-int OpenSerialConnectionToDeviceAtPath(const char *deviceFilePath)
+int OpenSerialConnectionToDeviceAtPath(const char *deviceFilePath, unsigned long connectionSpeed)
 {
     int             fileDescriptor = -1;
     int             handshake;
@@ -131,8 +131,7 @@ int OpenSerialConnectionToDeviceAtPath(const char *deviceFilePath)
         goto error;
     }
     
-    speed_t speed = 250000;
-    if (ioctl(fileDescriptor, IOSSIOSPEED, &speed) == -1) {
+    if (ioctl(fileDescriptor, IOSSIOSPEED, &connectionSpeed) == -1) {
         printf("Error calling ioctl(..., IOSSIOSPEED, ...) %s - %s(%d).\n",
                deviceFilePath, strerror(errno), errno);
     }

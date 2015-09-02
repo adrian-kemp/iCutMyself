@@ -25,4 +25,7 @@
 @property (nonatomic, assign) NSUInteger bufferedCommandCount;
 @property (nonatomic, assign) float estimatedCompletionTime;
 
+- (void)startBuildCameraRecordingWithFilePath:(NSURL *)filePath;
+- (void)finishBuildCameraRecording;
+
 @end

@@ -66,12 +66,46 @@ typedef enum {
 
 - (instancetype)initWithString:(NSString *)gcodeString {
     self = [super init];
-
     self.commandString = gcodeString;
-    self.positionX = [self numberForGCodeComponent:GCodeComponentMoveX inString:gcodeString];
-    self.positionY = [self numberForGCodeComponent:GCodeComponentMoveY inString:gcodeString];
-    self.positionZ = [self numberForGCodeComponent:GCodeComponentMoveZ inString:gcodeString];
-    self.feedRate = [self numberForGCodeComponent:GCodeComponentFeedRate inString:gcodeString];
+
+    NSArray *components = [gcodeString componentsSeparatedByString:@" "];
+    for (NSString *component in components) {
+        if (component.length == 0) {
+            continue;
+        }
+        unichar codeType = [component characterAtIndex:0];
+        switch (codeType) {
+            case 'G':
+                break;
+            case 'X':
+                if (component.length < 2) {
+                    continue;
+                }
+                self.positionX = [self.numberFormatter numberFromString:[component substringFromIndex:1]];
+                break;
+            case 'Y':
+                if (component.length < 2) {
+                    continue;
+                }
+                self.positionY = [self.numberFormatter numberFromString:[component substringFromIndex:1]];
+                break;
+            case 'Z':
+                if (component.length < 2) {
+                    continue;
+                }
+                self.positionZ = [self.numberFormatter numberFromString:[component substringFromIndex:1]];
+                break;
+            case 'F':
+                if (component.length < 2) {
+                    continue;
+                }
+                self.feedRate = [self.numberFormatter numberFromString:[component substringFromIndex:1]];
+                break;
+            default:
+                break;
+        }
+    }
+    
     if (!self.feedRate) {
         self.feedRate = @(100);
     }
@@ -79,16 +113,16 @@ typedef enum {
     return self;
 }
 
-- (NSNumber *)millisecondsToTransitFromCommand:(GCodeCommand *)command {
+- (time_t)millisecondsToTransitFromCommand:(GCodeCommand *)command {
     if (!command) {
         command = [GCodeCommand zeroCommand];
     }
     float deltaX = self.positionX.floatValue - command.positionX.floatValue;
     float deltaY = self.positionY.floatValue - command.positionY.floatValue;
     float deltaZ = self.positionZ.floatValue - command.positionZ.floatValue;
-    float millisecondsForTransit = (sqrt(deltaX*deltaX + deltaY*deltaY + deltaZ*deltaZ) / (self.feedRate.floatValue / 60)) * 1000;
+    time_t millisecondsForTransit = ((sqrt(deltaX*deltaX + deltaY*deltaY + deltaZ*deltaZ) / (self.feedRate.floatValue / 60.0f)) * 1000.0f);
     
-    return @(millisecondsForTransit);
+    return millisecondsForTransit;
 }
 
 - (NSString *)description {

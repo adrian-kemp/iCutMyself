@@ -28,8 +28,8 @@
     }
 }
 
-- (void)dataPreparationViewController:(DataPreparationViewController *)controller wantsToSendString:(NSString *)string {
-    [self.deviceConnectionViewController writeString:string];
+- (void)sendDeviceGCodeCommands:(NSArray *)gCodeCommands withEstimatedCompletionTimeInMilliseconds:(time_t)estimatedCompletionTimeInMilliseconds {
+    [self.deviceConnectionViewController beginNewBuildWithGCodeCommands:gCodeCommands estimatedCompletionTimeInMilliseconds:estimatedCompletionTimeInMilliseconds];
 }
 
 @end

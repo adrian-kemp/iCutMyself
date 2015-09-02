@@ -7,6 +7,7 @@
 //
 
 #import "DeviceConnectionView.h"
+#import "BuildCameraView.h"
 
 @interface DeviceConnectionView ()
 
@@ -14,6 +15,7 @@
 @property (weak) IBOutlet NSTextField *commandStatusTextField;
 @property (weak) IBOutlet NSTextField *estimatedCompletionTimeTextField;
 @property (weak) IBOutlet NSProgressIndicator *processingProgressIndicator;
+@property (weak) IBOutlet BuildCameraView *buildCameraView;
 
 @end
 
@@ -22,7 +24,6 @@
 - (void)setDevicePaths:(NSArray *)devicePaths {
     [self.deviceSelectionButton addItemsWithTitles:devicePaths];
 }
-
 
 - (IBAction)popupButtonDidChangeValue:(NSPopUpButton *)sender {
     NSUInteger selectedIndex = [sender.itemArray indexOfObject:sender.selectedItem] - 1;
@@ -52,6 +53,14 @@
 - (void)setEstimatedCompletionTime:(float)estimatedCompletionTime {
     _estimatedCompletionTime = estimatedCompletionTime;
     self.estimatedCompletionTimeTextField.stringValue = [NSString stringWithFormat:@"ECT: %.2fs", estimatedCompletionTime/1000];
+}
+
+- (void)startBuildCameraRecordingWithFilePath:(NSURL *)filePath {
+    [self.buildCameraView beginRecordingToFileAtPath:filePath];
+}
+
+- (void)finishBuildCameraRecording {
+    [self.buildCameraView finishRecording];
 }
 
 @end

@@ -7,17 +7,18 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "DataPreparationView.h"
 
 @class DataPreparationViewController;
 
 @protocol DataPreparationViewControllerDelegate <NSObject>
 
-- (void)dataPreparationViewController:(DataPreparationViewController *)controller wantsToSendString:(NSString *)string;
+- (void)sendDeviceGCodeCommands:(NSArray *)gCodeCommands withEstimatedCompletionTimeInMilliseconds:(time_t)estimatedCompletionTimeInMilliseconds;
 
 @end
 
-@interface DataPreparationViewController : NSViewController
-
+@interface DataPreparationViewController : NSViewController <DataPreparationViewDelegate>
+@property DataPreparationView *view;
 @property (nonatomic, weak) id <DataPreparationViewControllerDelegate> delegate;
 
 

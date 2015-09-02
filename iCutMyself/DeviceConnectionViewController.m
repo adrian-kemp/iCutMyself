@@ -19,9 +19,10 @@
 @property (nonatomic, assign) int fileDescriptor;
 @property (nonatomic, assign) uint8_t *readBuffer;
 @property (nonatomic, strong) NSTimer *readTimer;
-@property (nonatomic, strong) NSMutableArray *commandBuffer;
 @property (nonatomic, strong) NSMutableArray *commandsPendingConfirmation;
 @property (nonatomic, strong) NSTimer *writeTimer;
+@property (nonatomic, assign) unsigned long connectionSpeed;
+@property (nonatomic, strong) NSMutableArray *commandBuffer;
 
 @end
 
@@ -56,8 +57,22 @@
 
 - (void)prepareForSegue:(NSStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"popoverToolSettingsViewController"]) {
+        [self.view finishBuildCameraRecording];
         ((ToolSettingsViewController *)segue.destinationController).delegate = self;
     }
+}
+
+- (void)beginNewBuildWithGCodeCommands:(NSArray *)gCodeCommands estimatedCompletionTimeInMilliseconds:(time_t)estimatedCompletionTimeInMilliseconds {
+    [self.commandBuffer addObjectsFromArray:gCodeCommands];
+    self.view.estimatedCompletionTime += estimatedCompletionTimeInMilliseconds;
+    //start build camera
+    NSDateFormatter *dateFormatter = [NSDateFormatter new];
+    [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
+    [dateFormatter setTimeStyle:NSDateFormatterMediumStyle];
+    NSString *filePathString = [NSString stringWithFormat:@"%@/Build - %@.mov", NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0], [dateFormatter stringFromDate:[NSDate date]]];
+    NSLog(@"beginning record to location: %@", [NSURL fileURLWithPath:filePathString]);
+    [self.view startBuildCameraRecordingWithFilePath:[NSURL fileURLWithPath:filePathString]];
+    
 }
 
 - (void)DeviceConnectionView:(DeviceConnectionView *)view didSelectDeviceAtIndex:(NSUInteger)index {
@@ -65,25 +80,8 @@
     NSLog(@"selected device: %@", self.devicePaths[index]);
     
     //open the serial communication channel
-    self.fileDescriptor = OpenSerialConnectionToDeviceAtPath([devicePath cStringUsingEncoding:NSASCIIStringEncoding]);
-}
-
-- (void)writeString:(NSString *)string {
-    //break the string by new line
-    __block NSString *stringToParse = [string copy];
-    __weak typeof(self) weakSelf = self;
-    dispatch_async(dispatch_get_global_queue(0, 0), ^{
-        NSArray *commandStrings = [stringToParse componentsSeparatedByString:@"\n"];
-        GCodeCommand *lastCommand = weakSelf.commandBuffer.lastObject;
-        for (NSString *commandString in commandStrings) {
-            GCodeCommand *command = [[GCodeCommand alloc] initWithString:commandString];
-            [weakSelf.commandBuffer addObject:command];
-            float timeForCommand = [command millisecondsToTransitFromCommand:lastCommand].floatValue;
-            weakSelf.view.estimatedCompletionTime += timeForCommand;
-            weakSelf.view.bufferedCommandCount = weakSelf.commandBuffer.count;
-            lastCommand = command;
-        }
-    });
+    if (!self.connectionSpeed) {self.connectionSpeed = 9600;}
+    self.fileDescriptor = OpenSerialConnectionToDeviceAtPath([devicePath cStringUsingEncoding:NSASCIIStringEncoding], self.connectionSpeed);
 }
 
 - (void)writeToDevice {
@@ -93,12 +91,12 @@
     
     GCodeCommand *commandToSend = self.commandBuffer.firstObject;
     NSString *stringToSend = [NSString stringWithFormat:@"%@\n", commandToSend.commandString];
-    if (!WriteDataToSerialModem([stringToSend cStringUsingEncoding:NSASCIIStringEncoding], stringToSend.length, self.fileDescriptor)) {
+    if (!WriteDataToSerialModem((uint8_t *)[stringToSend cStringUsingEncoding:NSASCIIStringEncoding], stringToSend.length, self.fileDescriptor)) {
         NSLog(@"ERROR: Unsuccessful write!");
     } else {
         [self.commandsPendingConfirmation addObject:commandToSend];
         [self.commandBuffer removeObjectAtIndex:0];
-        self.view.estimatedCompletionTime -= [commandToSend millisecondsToTransitFromCommand:self.commandBuffer.firstObject].floatValue;
+        self.view.estimatedCompletionTime -= [commandToSend millisecondsToTransitFromCommand:self.commandBuffer.firstObject];
         self.view.bufferedCommandCount = self.commandBuffer.count;
         self.view.sentCommandCount++;
     }
@@ -109,7 +107,7 @@
         return;
     }
     if (ReadDataFromSerialModem(self.readBuffer, BUFFER_SIZE, self.fileDescriptor)) {
-        NSString *readData = [NSString stringWithCString:self.readBuffer encoding:NSASCIIStringEncoding];
+        NSString *readData = [NSString stringWithCString:(const char *)self.readBuffer encoding:NSASCIIStringEncoding];
         NSArray *responses = [readData componentsSeparatedByString:@"\n"];
         for (NSString *response in responses) {
             if ([response isEqualToString:@"ok"]) {
@@ -129,7 +127,7 @@
 }
 
 - (void)baudRateDidChange:(NSNumber *)baudRate {
-    NSLog(@"baud rate changed to: %@", baudRate);
+    self.connectionSpeed = baudRate.longValue;
 }
 
 @end

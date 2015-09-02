@@ -7,9 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		750446321B9365AB0086BEE4 /* GCodeAnalysisSummaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 750446311B9365AB0086BEE4 /* GCodeAnalysisSummaryViewController.m */; };
+		750446351B9365D00086BEE4 /* GCodeAnalysisSummaryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 750446341B9365D00086BEE4 /* GCodeAnalysisSummaryView.m */; };
+		750446381B93716E0086BEE4 /* BuildCameraView.m in Sources */ = {isa = PBXBuildFile; fileRef = 750446371B93716E0086BEE4 /* BuildCameraView.m */; };
 		75251CEF1B8FE74900543278 /* GCodeCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = 75251CEE1B8FE74900543278 /* GCodeCommand.m */; };
 		7546DE511B8C98A1002EDDCC /* ToolSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7546DE501B8C98A1002EDDCC /* ToolSettingsViewController.m */; };
 		7546DE541B8C9C58002EDDCC /* ToolSettingsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7546DE531B8C9C58002EDDCC /* ToolSettingsView.m */; };
+		75BFBBCC1B908D020018F773 /* DataPreparationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 75BFBBCB1B908D020018F773 /* DataPreparationView.m */; };
 		75C975D81B7E59C500EF1E5B /* CommunicationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75C975D71B7E59C500EF1E5B /* CommunicationViewController.m */; };
 		75C975DB1B7E5C5100EF1E5B /* DataPreparationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 75C975DA1B7E5C5100EF1E5B /* DataPreparationViewController.m */; };
 		75D0BE0C1B75316F0096CAEC /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75D0BE0B1B75316F0096CAEC /* IOKit.framework */; };
@@ -34,12 +38,20 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		750446301B9365AB0086BEE4 /* GCodeAnalysisSummaryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCodeAnalysisSummaryViewController.h; sourceTree = "<group>"; };
+		750446311B9365AB0086BEE4 /* GCodeAnalysisSummaryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCodeAnalysisSummaryViewController.m; sourceTree = "<group>"; };
+		750446331B9365D00086BEE4 /* GCodeAnalysisSummaryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCodeAnalysisSummaryView.h; sourceTree = "<group>"; };
+		750446341B9365D00086BEE4 /* GCodeAnalysisSummaryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCodeAnalysisSummaryView.m; sourceTree = "<group>"; };
+		750446361B93716E0086BEE4 /* BuildCameraView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuildCameraView.h; sourceTree = "<group>"; };
+		750446371B93716E0086BEE4 /* BuildCameraView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuildCameraView.m; sourceTree = "<group>"; };
 		75251CED1B8FE74800543278 /* GCodeCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCodeCommand.h; sourceTree = "<group>"; };
 		75251CEE1B8FE74900543278 /* GCodeCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCodeCommand.m; sourceTree = "<group>"; };
 		7546DE4F1B8C98A1002EDDCC /* ToolSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToolSettingsViewController.h; sourceTree = "<group>"; };
 		7546DE501B8C98A1002EDDCC /* ToolSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToolSettingsViewController.m; sourceTree = "<group>"; };
 		7546DE521B8C9C58002EDDCC /* ToolSettingsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToolSettingsView.h; sourceTree = "<group>"; };
 		7546DE531B8C9C58002EDDCC /* ToolSettingsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToolSettingsView.m; sourceTree = "<group>"; };
+		75BFBBCA1B908D020018F773 /* DataPreparationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataPreparationView.h; sourceTree = "<group>"; };
+		75BFBBCB1B908D020018F773 /* DataPreparationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataPreparationView.m; sourceTree = "<group>"; };
 		75C975D61B7E59C500EF1E5B /* CommunicationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommunicationViewController.h; sourceTree = "<group>"; };
 		75C975D71B7E59C500EF1E5B /* CommunicationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommunicationViewController.m; sourceTree = "<group>"; };
 		75C975D91B7E5C5100EF1E5B /* DataPreparationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataPreparationViewController.h; sourceTree = "<group>"; };
@@ -109,22 +121,30 @@
 				75FE22441B74D4A9009CEC97 /* Images.xcassets */,
 				75FE22461B74D4A9009CEC97 /* Main.storyboard */,
 				75FE223A1B74D4A9009CEC97 /* Supporting Files */,
-				75D0BE0D1B7541570096CAEC /* DeviceConnectionViewController.h */,
-				75D0BE0E1B7541570096CAEC /* DeviceConnectionViewController.m */,
-				75D0BE101B7556CA0096CAEC /* DeviceConnectionView.h */,
-				75D0BE111B7556CA0096CAEC /* DeviceConnectionView.m */,
+				75251CED1B8FE74800543278 /* GCodeCommand.h */,
+				75251CEE1B8FE74900543278 /* GCodeCommand.m */,
 				75D0BE131B75595F0096CAEC /* SerialCommunication.c */,
 				75D0BE141B75595F0096CAEC /* SerialCommunication.h */,
 				75C975D61B7E59C500EF1E5B /* CommunicationViewController.h */,
 				75C975D71B7E59C500EF1E5B /* CommunicationViewController.m */,
+				75D0BE0D1B7541570096CAEC /* DeviceConnectionViewController.h */,
+				75D0BE0E1B7541570096CAEC /* DeviceConnectionViewController.m */,
+				75D0BE101B7556CA0096CAEC /* DeviceConnectionView.h */,
+				75D0BE111B7556CA0096CAEC /* DeviceConnectionView.m */,
 				75C975D91B7E5C5100EF1E5B /* DataPreparationViewController.h */,
 				75C975DA1B7E5C5100EF1E5B /* DataPreparationViewController.m */,
+				75BFBBCA1B908D020018F773 /* DataPreparationView.h */,
+				75BFBBCB1B908D020018F773 /* DataPreparationView.m */,
+				750446301B9365AB0086BEE4 /* GCodeAnalysisSummaryViewController.h */,
+				750446311B9365AB0086BEE4 /* GCodeAnalysisSummaryViewController.m */,
+				750446331B9365D00086BEE4 /* GCodeAnalysisSummaryView.h */,
+				750446341B9365D00086BEE4 /* GCodeAnalysisSummaryView.m */,
 				7546DE4F1B8C98A1002EDDCC /* ToolSettingsViewController.h */,
 				7546DE501B8C98A1002EDDCC /* ToolSettingsViewController.m */,
 				7546DE521B8C9C58002EDDCC /* ToolSettingsView.h */,
 				7546DE531B8C9C58002EDDCC /* ToolSettingsView.m */,
-				75251CED1B8FE74800543278 /* GCodeCommand.h */,
-				75251CEE1B8FE74900543278 /* GCodeCommand.m */,
+				750446361B93716E0086BEE4 /* BuildCameraView.h */,
+				750446371B93716E0086BEE4 /* BuildCameraView.m */,
 			);
 			path = iCutMyself;
 			sourceTree = "<group>";
@@ -256,13 +276,17 @@
 			files = (
 				75D0BE0F1B7541570096CAEC /* DeviceConnectionViewController.m in Sources */,
 				75D0BE151B75595F0096CAEC /* SerialCommunication.c in Sources */,
+				750446321B9365AB0086BEE4 /* GCodeAnalysisSummaryViewController.m in Sources */,
+				750446351B9365D00086BEE4 /* GCodeAnalysisSummaryView.m in Sources */,
 				75FE22401B74D4A9009CEC97 /* main.m in Sources */,
 				75D0BE121B7556CA0096CAEC /* DeviceConnectionView.m in Sources */,
 				75C975DB1B7E5C5100EF1E5B /* DataPreparationViewController.m in Sources */,
+				75BFBBCC1B908D020018F773 /* DataPreparationView.m in Sources */,
 				7546DE541B8C9C58002EDDCC /* ToolSettingsView.m in Sources */,
 				7546DE511B8C98A1002EDDCC /* ToolSettingsViewController.m in Sources */,
 				75C975D81B7E59C500EF1E5B /* CommunicationViewController.m in Sources */,
 				75251CEF1B8FE74900543278 /* GCodeCommand.m in Sources */,
+				750446381B93716E0086BEE4 /* BuildCameraView.m in Sources */,
 				75FE223E1B74D4A9009CEC97 /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -13,7 +13,7 @@
 #include <stdio.h>
 
 CFArrayRef getSerialModemList();
-int OpenSerialConnectionToDeviceAtPath(const char *deviceFilePath);
+int OpenSerialConnectionToDeviceAtPath(const char *deviceFilePath, unsigned long connectionSpeed);
 Boolean WriteDataToSerialModem(uint8_t *data, ssize_t dataLength, int fileDescriptor);
 Boolean ReadDataFromSerialModem(uint8_t *buffer, ssize_t bufferSize, int fileDescriptor);
 

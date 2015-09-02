@@ -11,8 +11,8 @@
 
 @interface DeviceConnectionViewController : NSViewController
 
-@property (atomic, strong) DeviceConnectionView *view;
+@property DeviceConnectionView *view;
 
-- (void)writeString:(NSString *)string;
+- (void)beginNewBuildWithGCodeCommands:(NSArray *)gCodeCommands estimatedCompletionTimeInMilliseconds:(time_t)estimatedCompletionTimeInMilliseconds;
 
 @end

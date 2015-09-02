@@ -17,6 +17,6 @@
 @property (nonatomic, strong) NSString *commandString;
 
 - (instancetype)initWithString:(NSString *)gcodeString;
-- (NSNumber *)millisecondsToTransitFromCommand:(GCodeCommand *)command;
+- (time_t)millisecondsToTransitFromCommand:(GCodeCommand *)command;
 
 @end

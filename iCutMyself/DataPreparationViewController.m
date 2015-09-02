@@ -7,29 +7,71 @@
 //
 
 #import "DataPreparationViewController.h"
+#import "GCodeAnalysisSummaryViewController.h"
+#import "GCodeCommand.h"
 
-@interface DataPreparationViewController ()
+@interface DataPreparationViewController () <GCodeAnalysisSummaryViewControllerDataSource>
 
-@property (unsafe_unretained) IBOutlet NSTextView *textView;
-@property (unsafe_unretained) IBOutlet NSTextView *historyView;
+@property (nonatomic, strong) NSMutableArray *gCodeCommands;
 
 @end
 
 @implementation DataPreparationViewController
+@dynamic view;
+@synthesize estimatedCompletionTimeInMilliseconds=_estimatedCompletionTimeInMilliseconds;
+@synthesize commandCount=_commandCount;
+
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    
+    self.gCodeCommands = [NSMutableArray new];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.view.delegate = self;
     // Do view setup here.
 }
 
-- (IBAction)sendData:(id)sender {
-    [self.delegate dataPreparationViewController:self wantsToSendString:self.textView.string];
-    NSMutableString *historyString = [self.historyView.string mutableCopy];
-    [historyString appendString:self.textView.string];
-    [historyString appendString:@"\n"];
-    self.historyView.string = [historyString copy];
-    [self.historyView scrollToEndOfDocument:nil];
-    self.textView.string = @"";
+- (void)prepareForSegue:(NSStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"popoverGCodeAnalysisSummaryViewController"]) {
+        ((GCodeAnalysisSummaryViewController *)segue.destinationController).dataSource = self;
+    }
+}
+
+#pragma mark - DataPreparationViewDelegate selectors
+- (void)editingDidFinishWithGCodeString:(NSString *)gCodeString {
+    [self.view setMode:DataPreparationViewModeAnalyzing];
+    self.estimatedCompletionTimeInMilliseconds = 0;
+    self.commandCount = 0;
+    __weak typeof(self) weakSelf = self;
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        time_t estimatedCompletionTimeInMilliseconds = 0;
+        unsigned long commandCount = 0;
+        NSArray *commandStrings = [gCodeString componentsSeparatedByString:@"\n"];
+        GCodeCommand *lastCommand = weakSelf.gCodeCommands.lastObject;
+        for (NSString *commandString in commandStrings) {
+            GCodeCommand *command = [[GCodeCommand alloc] initWithString:commandString];
+            [weakSelf.gCodeCommands addObject:command];
+            time_t timeForCommand = [command millisecondsToTransitFromCommand:lastCommand];
+            estimatedCompletionTimeInMilliseconds += timeForCommand;
+            commandCount++;
+            lastCommand = command;
+        }
+        weakSelf.estimatedCompletionTimeInMilliseconds = estimatedCompletionTimeInMilliseconds;
+        weakSelf.commandCount = commandCount;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [weakSelf.view setMode:DataPreparationViewModeConfirm];
+            [weakSelf performSegueWithIdentifier:@"popoverGCodeAnalysisSummaryViewController" sender:self];
+        });
+    });
+}
+
+- (void)commitPreviouslyAnalyzedGCode {
+    NSLog(@"sending %lu commands to device", self.gCodeCommands.count);
+    [self.delegate sendDeviceGCodeCommands:[self.gCodeCommands copy] withEstimatedCompletionTimeInMilliseconds:self.estimatedCompletionTimeInMilliseconds];
+
 }
 
 @end
